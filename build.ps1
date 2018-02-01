@@ -2,8 +2,6 @@
 
 cd $global:OpenSSL_sourcedir
 
-perl Configure VC-WIN64A
+perl Configure --openssldir="C:\Program Files\OpenSSL\etc" VC-WIN64A
 
 nmake
-#nmake test
-#nmake install
