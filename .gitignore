@@ -1,0 +1,8 @@
+## Editors
+.*.sw[op]
+*~
+
+## Binary Artifacts
+*.zip
+openssl*/
+*OpenSSL*/
