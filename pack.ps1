@@ -1,7 +1,10 @@
 . .\config.ps1
 
+$installedPath = 'C:\Program Files\OpenSSL'
+
 cd $global:OpenSSL_sourcedir
 
+Write-Output "Installing OpenSSL to $installedPath"
 & nmake.exe install
 
 cd ..
@@ -9,7 +12,6 @@ cd ..
 Add-Type -Assembly System.IO.Compression.FileSystem
 $compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
 
-$installedPath = 'C:\Program Files\OpenSSL'
 $vcsuffix = [string]::Format('vc{0}', $env:VisualStudioVersion.Replace('.', ''))
 [string]$pwd = Get-Location
 $distFile = [string]::Format(
@@ -18,14 +20,17 @@ $distFile = [string]::Format(
 	$env:Platform,
 	$vcsuffix
 )
+$distFilePath = $pwd + '/' + $distFile
 
 if (Test-Path $distFile) {
+	Write-Output "Deleting old ZIP $distFile"
 	Remove-Item -Recurse $distFile
 }
 
+Write-Output "Packing OpenSSL into a ZIP file at $distFilePath"
 [System.IO.Compression.ZipFile]::CreateFromDirectory(
 	$installedPath,
-	$distFile,
+	$distFilePath,
 	$compressionLevel,
 	$false
 )
