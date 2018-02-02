@@ -8,7 +8,13 @@ Add-Type -Assembly System.IO.Compression.FileSystem
 $compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
 
 $installedPath = 'C:\Program Files\OpenSSL'
-$distFile = "openssl-" + $OpenSSL_version + "-binary-icinga-" + $env:Platform + ".zip"
+$vcsuffix = [string]::Format('vc{0}', $env:VisualStudioVersion.Replace('.', ''))
+$distFile = [string]::Format(
+    'openssl-{0}-binary-icinga-{1}-{2}.zip',
+	$OpenSSL_version,
+	$env:Platform,
+	$vcsuffix
+)
 
 if (Test-Path $distFile) {
 	Remove-Item -Recurse $distFile
