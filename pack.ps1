@@ -23,7 +23,11 @@ if (Test-Path $distFile) {
 	Remove-Item -Recurse $distFile
 }
 
-[System.IO.Compression.ZipFile]::CreateFromDirectory($installedPath,
-	$distFile, $compressionLevel, $false)
+[System.IO.Compression.ZipFile]::CreateFromDirectory(
+	$installedPath,
+	$distFile,
+	$compressionLevel,
+	$false
+)
 	
 exit 0
