@@ -1,0 +1,34 @@
+version: 1.0.1g.{build}
+
+image: Visual Studio 2017
+
+init:
+- cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+
+install:
+- ps: >-
+    if (-Not (Test-Path "C:\Program Files\NASM")) {
+        choco install nasm
+        if ($lastexitcode -ne 0){ exit $lastexitcode }
+    }
+
+cache: C:\Program Files\NASM
+
+build_script:
+- ps: >-
+    #$ErrorActionPreference = "Stop"
+
+    .\prepare.ps1
+    if ($lastexitcode -ne 0){ exit $lastexitcode }
+
+    .\build.ps1
+    if ($lastexitcode -ne 0){ exit $lastexitcode }
+
+    .\pack.ps1
+    if ($lastexitcode -ne 0){ exit $lastexitcode }
+
+test_script:
+- ps: .\test.ps1
+
+artifacts:
+- path: openssl*-binary-*.zip
