@@ -2,7 +2,7 @@
 
 cd $global:OpenSSL_sourcedir
 
-& nmake install
+& nmake.exe install
 
 Add-Type -Assembly System.IO.Compression.FileSystem
 $compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
