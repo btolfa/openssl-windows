@@ -1,5 +1,4 @@
 . .\config.ps1
-$ErrorActionPreference = "Stop"
 
 if (Test-Path $global:OpenSSL_file) {
     Write-Output "OpenSSL archive available at $global:OpenSSL_file"

@@ -1,9 +1,8 @@
 . .\config.ps1
-$ErrorActionPreference = "Stop"
 
 cd $global:OpenSSL_sourcedir
 
-nmake install
+& nmake install
 
 Add-Type -Assembly System.IO.Compression.FileSystem
 $compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
