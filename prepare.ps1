@@ -5,7 +5,9 @@ if (Test-Path $global:OpenSSL_file) {
     Write-Output "OpenSSL archive available at $global:OpenSSL_file"
 } else {
     Write-Output "Downloading OpenSSL from $global:OpenSSL_url"
+	$progressPreference = 'silentlyContinue'
     Invoke-WebRequest -Uri $global:OpenSSL_url -OutFile $global:OpenSSL_file
+	$progressPreference = 'Continue'
 }
 
 if (Test-Path $global:OpenSSL_sourcedir) {
