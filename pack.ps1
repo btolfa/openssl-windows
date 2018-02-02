@@ -4,11 +4,14 @@ cd $global:OpenSSL_sourcedir
 
 & nmake.exe install
 
+cd ..
+
 Add-Type -Assembly System.IO.Compression.FileSystem
 $compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
 
 $installedPath = 'C:\Program Files\OpenSSL'
 $vcsuffix = [string]::Format('vc{0}', $env:VisualStudioVersion.Replace('.', ''))
+[string]$pwd = Get-Location
 $distFile = [string]::Format(
     'openssl-{0}-binary-icinga-{1}-{2}.zip',
 	$OpenSSL_version,
