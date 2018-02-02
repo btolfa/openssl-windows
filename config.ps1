@@ -7,11 +7,12 @@ if (-not (Test-Path env:NASM_PATH)) {
 	$env:NASM_PATH = "C:\Program Files\NASM"
 }
 if (-not ($env:PATH -contains $env:NASM_PATH)) {
-	$env:PATH += $env:NASM_PATH + ";"
+	$env:PATH = $env:NASM_PATH + ";" + $env:PATH
 }
+
 if (-not (Test-Path env:PERL_PATH)) {
 	$env:PERL_PATH = "C:\Perl64\bin"
 }
 if (-not ($env:PATH -contains $env:PERL_PATH)) {
-	$env:PATH += $env:PERL_PATH + ";"
+	$env:PATH = $env:PERL_PATH + ";" + $env:PATH
 }
