@@ -17,3 +17,5 @@ Write-Output "Extracting ZIP to $global:OpenSSL_sourcedir"
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 [string]$pwd = Get-Location
 [System.IO.Compression.ZipFile]::ExtractToDirectory($pwd + "/" + $global:OpenSSL_file, $pwd)
+
+exit 0

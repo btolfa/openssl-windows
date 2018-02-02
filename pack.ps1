@@ -22,3 +22,5 @@ if (Test-Path $distFile) {
 
 [System.IO.Compression.ZipFile]::CreateFromDirectory($installedPath,
 	$distFile, $compressionLevel, $false)
+	
+exit 0
