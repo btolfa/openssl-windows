@@ -1,4 +1,5 @@
 . .\config.ps1
+$ErrorActionPreference = "Stop"
 
 if (Test-Path $global:OpenSSL_file) {
     Write-Output "OpenSSL archive available at $global:OpenSSL_file"
@@ -13,4 +14,5 @@ if (Test-Path $global:OpenSSL_sourcedir) {
 
 Write-Output "Extracting ZIP to $global:OpenSSL_sourcedir"
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-[System.IO.Compression.ZipFile]::ExtractToDirectory($global:OpenSSL_file, ".")
+[string]$pwd = Get-Location
+[System.IO.Compression.ZipFile]::ExtractToDirectory($pwd + "/" + $global:OpenSSL_file, $pwd)
