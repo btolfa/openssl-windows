@@ -1,6 +1,8 @@
 OpenSSL for Windows
 ===================
 
+[![Build status](https://ci.appveyor.com/api/projects/status/sruycdakhr1tdpgc?svg=true)](https://ci.appveyor.com/project/icinga/openssl-windows)
+
 This is an Icinga internal dist build for Windows, which we will use in the
 future to build Icinga 2 for Windows.
 
