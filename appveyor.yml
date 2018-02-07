@@ -2,33 +2,47 @@ version: 1.1.0g.{build}
 
 image: Visual Studio 2017
 
+branches:
+  only:
+  - master
+
 init:
 - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 install:
 - ps: >-
     if (-Not (Test-Path "C:\Program Files\NASM")) {
-        choco install nasm
-        if ($lastexitcode -ne 0){ exit $lastexitcode }
+      choco install nasm
+      if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
     }
 
-cache: C:\Program Files\NASM
+cache:
+  - C:\Program Files\NASM
 
 build_script:
-- ps: >-
-    #$ErrorActionPreference = "Stop"
-
+- ps: |
     .\prepare.ps1
-    if ($lastexitcode -ne 0){ exit $lastexitcode }
+    if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
 
     .\build.ps1
-    if ($lastexitcode -ne 0){ exit $lastexitcode }
+    if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
 
     .\pack.ps1
-    if ($lastexitcode -ne 0){ exit $lastexitcode }
+    if ($LastExitCode -ne 0) { $host.SetShouldExit($LastExitCode)  }
 
 test_script:
 - ps: .\test.ps1
 
 artifacts:
 - path: openssl*-binary-*.zip
+
+deploy:
+  provider: GitHub
+  release: openssl-windows-$(appveyor_repo_tag_name)
+  auth_token:
+    # account: icingaadmin
+    secure: +pF3BDcIwq3llrm8kfKXYbbvCah/aNKOTQGhU172MFEyUBRf887d+/hsvSiI2xXF
+  artifact: openssl*-binary-*.zip
+  on:
+    branch: master
+    appveyor_repo_tag: true
