@@ -1,10 +1,9 @@
 . .\config.ps1
 
-$installedPath = 'C:\Program Files\OpenSSL'
 
 cd $global:OpenSSL_sourcedir
 
-Write-Output "Installing OpenSSL to $installedPath"
+Write-Output "Installing OpenSSL to $global:installedPath"
 & nmake.exe install
 
 cd ..
@@ -29,7 +28,7 @@ if (Test-Path $distFile) {
 
 Write-Output "Packing OpenSSL into a ZIP file at $distFilePath"
 [System.IO.Compression.ZipFile]::CreateFromDirectory(
-	$installedPath,
+	$global:installedPath,
 	$distFilePath,
 	$compressionLevel,
 	$false

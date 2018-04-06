@@ -21,6 +21,8 @@ if (-not ($env:PATH -contains $env:PERL_PATH)) {
 
 if ($env:Platform -eq "x86") {
 	$global:OpenSSL_target = "VC-WIN32"
+	$global:installedPath = 'C:\Program Files (x86)\OpenSSL'
 } else {
 	$global:OpenSSL_target = "VC-WIN64A"
+	$global:installedPath = 'C:\Program Files\OpenSSL'
 }

@@ -2,7 +2,7 @@
 
 cd $global:OpenSSL_sourcedir
 
-& perl Configure --openssldir="C:\Program Files\OpenSSL\etc" $global:OpenSSL_target
+& perl Configure --openssldir="$global:installedPath\etc" $global:OpenSSL_target
 if ($lastexitcode -ne 0){ exit $lastexitcode }
 
 & nmake.exe
