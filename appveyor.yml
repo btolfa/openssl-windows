@@ -29,15 +29,15 @@ build_script:
 test_script:
 - ps: .\test.ps1
 
-artifacts:
-- path: openssl*-binary-*.zip
+# artifacts:
+# - path: openssl*-binary-*.zip
 
-deploy:
-  provider: GitHub
-  description: openssl-windows-$(appveyor_repo_tag_name)
-  auth_token:
-    # account: icingaadmin
-    secure: +pF3BDcIwq3llrm8kfKXYbbvCah/aNKOTQGhU172MFEyUBRf887d+/hsvSiI2xXF
-  artifact: /openssl.+-binary-.+\.zip/
-  on:
-    appveyor_repo_tag: true
+# deploy:
+#   provider: GitHub
+#   description: openssl-windows-$(appveyor_repo_tag_name)
+#   auth_token:
+# account: icingaadmin
+#    secure: +pF3BDcIwq3llrm8kfKXYbbvCah/aNKOTQGhU172MFEyUBRf887d+/hsvSiI2xXF
+#  artifact: /openssl.+-binary-.+\.zip/
+#  on:
+#    appveyor_repo_tag: true
