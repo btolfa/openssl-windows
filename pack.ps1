@@ -15,7 +15,7 @@ $compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
 $vcsuffix = [string]::Format('vc{0}', $env:VisualStudioVersion.Replace('.', ''))
 [string]$pwd = Get-Location
 $distFile = [string]::Format(
-    'openssl-{0}-binary-icinga-{1}-{2}.zip',
+    'openssl-{0}-binary-{1}-{2}.zip',
 	$OpenSSL_version,
 	$env:Platform,
 	$vcsuffix

@@ -18,3 +18,9 @@ if (-not (Test-Path env:PERL_PATH)) {
 if (-not ($env:PATH -contains $env:PERL_PATH)) {
 	$env:PATH = $env:PERL_PATH + ";" + $env:PATH
 }
+
+if ($env:Platform -eq "x86") {
+	$global:OpenSSL_target = "VC-WIN32"
+} else {
+	$global:OpenSSL_target = "VC-WIN64A"
+}

@@ -2,8 +2,15 @@ version: 1.1.0h.{build}
 
 image: Visual Studio 2017
 
+environment:
+  matrix:
+    - Platform: x86
+      VCVARSBAT: vcvars32.bat
+    - Platform: x64
+      VCVARSBAT: vcvars64.bat
+
 init:
-- cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
+- cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\%VCVARSBAT%"
 
 install:
 - ps: >-
